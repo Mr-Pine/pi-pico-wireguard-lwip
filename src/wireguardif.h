@@ -34,8 +34,8 @@
 #ifndef _WIREGUARDIF_H_
 #define _WIREGUARDIF_H_
 
-#include "lwip/arch.h"
 #include "lwip/netif.h"
+#include "lwip/arch.h"
 #include "lwip/ip_addr.h"
 
 // Default MTU for WireGuard is 1420 bytes
