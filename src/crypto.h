@@ -13,12 +13,15 @@
 #define wireguard_blake2s_final(ctx,out) blake2s_final(ctx,out)
 #define wireguard_blake2s(out,outlen,key,keylen,in,inlen) blake2s(out,outlen,key,keylen,in,inlen)
 
+#ifndef USE_mNaCl
 // X25519 IMPLEMENTATION
 #include "crypto/refc/x25519.h"
 #define wireguard_x25519(a,b,c)	x25519(a,b,c,1)
 
-//#include "crypto/cortex/scalarmult.h"
-//#define wireguard_x25519(a,b,c)	crypto_scalarmult_curve25519(a,b,c)
+#else
+#include "crypto/cortex/scalarmult.h"
+#define wireguard_x25519(a,b,c)	crypto_scalarmult_curve25519(a,b,c)
+#endif
 
 // CHACHA20POLY1305 IMPLEMENTATION
 #include "crypto/refc/chacha20poly1305.h"
